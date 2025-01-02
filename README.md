@@ -1,6 +1,6 @@
 # blackjack
 
-<h4 align="center">A Blackjack game created the goal is to get closer to 21 than the dealer without going over. If my hand is closer to 21, I win. If the dealer's hand is closer, or if I go over 21 (busted), I lose.</h4> 
+<h4 align="center">A Blackjack game created for the second project of my HTML University class. It simulates the classic card game with win, lose, and busted scenarios.</h4> 
 
 <h4 align="center">This project was built using <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a>, and <a href="https://getbootstrap.com/">Bootstrap</a>.</h4>
 
