@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <!-- INÍCIO DO HEAD -->
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <!-- My CSS -->
+    <link rel="stylesheet" href="css/blackjack_style.css" />
+    <title>BLACKJACK</title>
+  </head>
+  <!--FIM DO HEAD-->
+
+  <!-- INÍCIO DO BODY-->
+  <body>
+    <main class="body-container">
+      <div class="container-xxl" style="max-width: 90%">
+        <!-- JOGO -->
+        <section id="game" class="text-center">
+          <div
+            class="container d-flex justify-content-center align-items-center marg-t ingame"
+            style="max-width: 70%"
+          >
+            <!-- NEW GAME -->
+            <div class="col-sm side">
+              <a
+                class="btn btn-outline-light"
+                id="new_game"
+                onclick="new_game()"
+                >new game</a
+              >
+            </div>
+
+            <!-- TÍTULO -->
+            <div class="col-sm title" style="flex: 2.5 0 0%">
+              <h1 style="font-family: Chillow; font-size: 6vmin; color: white">
+                blackjack
+              </h1>
+            </div>
+
+            <!-- HIT -->
+            <div class="col-sm side" style="width: 25%">
+              <div
+                class="card-effect card-bottom-right"
+                id="card"
+                role="button"
+                onclick="player_new_card()"
+              >
+                <div class="card-effect-inner">
+                  <div class="card-effect-body">
+                    <img
+                      src="img/new/Back.svg"
+                      class="rounded mx-auto d-block"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DEALER -->
+          <div
+            class="container d-flex justify-content-center text-center ingame"
+            style="max-width: 70%"
+          >
+            <div class="space side" style="width: 25%"></div>
+            <div
+              id="dealer"
+              class="row row-cols-2 row-cols-lg-3 div-row d-flex justify-content-center text-center"
+            ></div>
+            <div class="space side" style="width: 25%"></div>
+          </div>
+
+          <!-- JOGADOR -->
+          <div
+            class="container d-flex justify-content-center text-center marg-b ingame"
+            style="max-width: 70%"
+          >
+            <div
+              class="points d-flex align-items-center justify-content-center"
+              style="width: 25%"
+            >
+              <p id="player-info"></p>
+            </div>
+            <div
+              id="player"
+              class="row row-cols-2 row-cols-lg-3 div-row d-flex justify-content-center text-center"
+            >
+              <!-- <img src="img/new/Back.svg" class="rest dealt" alt="" />
+              <img src="img/new/Back.svg" class="rest dealt" alt="" />
+              <img src="img/new/Back.svg" class="rest dealt" alt="" />
+              <img src="img/new/Back.svg" class="rest dealt" alt="" />
+              <img src="img/new/Back.svg" class="rest dealt" alt="" />
+              <img src="img/new/Back.svg" class="rest dealt" alt="" /> -->
+            </div>
+
+            <!-- STAND -->
+            <div
+              class="player-actions d-flex align-items-center justify-content-center"
+              style="width: 25%"
+            >
+              <a
+                class="btn btn-outline-light"
+                id="stand"
+                onclick="dealer_finish()"
+              >
+                Stand
+              </a>
+            </div>
+          </div>
+
+          <!-- OUTROS PARA JS -->
+          <p id="dealer-info"></p>
+        </section>
+        <!--FIM DO JOGO-->
+
+        <!-- GAME OVER POP UPS -->
+
+        <!-- DEALER LOSE / PLAYER WINS -->
+        <div id="dealerLose" class="dealer-lose popUp">
+          <div class="modal">
+            <h2>You Won!</h2>
+            <a
+              class="btn btn-outline-dark"
+              id="restart_game"
+              onclick="restart_game()"
+              >restart game</a
+            >
+            <div
+              class="container d-flex justify-content-center align-items-center text-center marg-t2"
+            >
+              <p class="dealer-final"></p>
+              <p class="player-final"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PLAYER LOSES / BUSTED -->
+        <div id="playerLose" class="player-lose popUp">
+          <div class="modal">
+            <h2>You're Busted :(</h2>
+            <p>Better Luck Next Time</p>
+            <a
+              class="btn btn-outline-dark"
+              id="restart_game"
+              onclick="restart_game()"
+              >restart game</a
+            >
+            <div
+              class="container d-flex justify-content-center align-items-center text-center marg-t2"
+            >
+              <p class="dealer-final"></p>
+              <p class="player-final"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEALER WINS -->
+        <div id="dealerWin" class="dealer-win popUp">
+          <div class="modal">
+            <h2>Dealer Won :(</h2>
+            <p>Better Luck Next Time</p>
+            <a
+              class="btn btn-outline-dark"
+              id="restart_game"
+              onclick="restart_game()"
+              >restart game</a
+            >
+            <div
+              class="container d-flex justify-content-center align-items-center text-center marg-t2"
+            >
+              <p class="dealer-final"></p>
+              <p class="player-final"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bootstrap JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- My JavaScript -->
+    <script src="js/blackjack_object.js"></script>
+    <script src="js/blackjack_manager.js"></script>
+    <script>
+      window.onload = new_game();
+      window.onload = finalNumbers();
+    </script>
+  </body>
+  <!--FIM DO BODY-->
+</html>
+
