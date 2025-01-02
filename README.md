@@ -6,7 +6,7 @@
 
 # Preview of the application
 <div align="center">
-  ![bj-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/bcfbe2f2-0410-4b3c-84a8-b84647d5a9fd)
+    <img src="https://github.com/user-attachments/assets/bcfbe2f2-0410-4b3c-84a8-b84647d5a9fd"/>
 </div>
 
 ## License
